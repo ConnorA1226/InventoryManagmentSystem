@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Product>
+    @{
+        ViewData["Title"] = "Products";
+    }
+
+    <h1>Products</h1>
+
+<form method="get" action="@Url.Action("Index", "Product")">
+    <div>
+        <label for="searchTerm">Search:</label>
+        <input type="text" id="searchTerm" name="searchTerm" />
+    </div>
+    <div>
+        <label for="sortBy">Sort By:</label>
+        <select id="sortBy" name="sortBy">
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+        </select>
+    </div>
+    <button type="submit">Apply</button>
+</form>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var product in Model)
+                {
+                    <tr>
+                        <td>@product.Id</td>
+                        <td>@product.Name</td>
+                        <td>@product.Price</td>
+                        <td>@product.Description</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
